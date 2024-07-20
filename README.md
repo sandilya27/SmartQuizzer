@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SmartQuizzer
+
+Elevate your quiz experience with AI! SmartQuizzer is an innovative quiz application that leverages artificial intelligence to provide a personalized and engaging quiz experience. Designed to be intuitive and user-friendly, SmartQuizzer aims to make learning and testing knowledge more interactive and enjoyable.
+
+## Features
+
+- **AI-Enhanced Quizzes:** Experience quizzes that adapt to your knowledge level and learning pace.
+- **Dynamic Question Generation:** Get new and unique questions generated in real-time.
+- **User Profiles:** Track your progress and performance with personalized insights.
+- **Real-Time Feedback:** Receive instant feedback on your answers to enhance learning.
+
+## Technologies
+
+- **Frontend:** Next.js, Tailwind CSS, ShadCN UI, Aceternity UI
+- **Backend:** Prisma, NeonDB (PostgreSQL)
+- **Authentication:** NextAuth
+- **Deployment:** Vercel
 
 ## Getting Started
 
-First, run the development server:
+To get started with SmartQuizzer, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. **Clone the Repository:**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   ```bash
+   git clone https://github.com/sandilya27/smart_quizzer.git
+2. **Navigate to the Project Directory:**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+    ```bash
+    cd smart-quizzer
+3. **Navigate to the Project Directory:**
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+    ```bash
+    cd smart-quizzer
+4. **Set Up Environment Variables:**
 
-## Learn More
+    Create a .env file in the root directory and add the necessary environment variables. You can refer to the .env.example file for guidance.
 
-To learn more about Next.js, take a look at the following resources:
+5. **Run the Development Server:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    ```bash
+    npm run dev
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+The application will be available at http://localhost:3000.
 
-## Deploy on Vercel
+6. **Run Database Migrations:**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    ```bash
+    npx prisma migrate 
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Usage
+
+- **Sign Up / Log In:** Create an account or log in to start taking quizzes.
+- **Start a Quiz:** Choose a quiz and start answering questions.
+- **Track Progress:** View your performance and progress in your user profile.
+
+## Contributing
+
+- Fork the repository.
+- Create a new branch for your feature or bug fix.
+- Commit your changes and push to your branch.
+- Open a pull request with a clear description of your changes.
+
