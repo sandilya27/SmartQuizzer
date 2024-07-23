@@ -1,4 +1,4 @@
-import HomeBtn from "@/components/HomeBtn";
+import HomeBtn from "@/components/home-btn";
 import { Spotlight } from "@/components/ui/Spotlight";
 
 export default function Home() {
