@@ -1,7 +1,5 @@
-
 import HomeBtn from "@/components/HomeBtn";
 import { Spotlight } from "@/components/ui/Spotlight";
-
 
 export default function Home() {
   return (
@@ -12,9 +10,6 @@ export default function Home() {
           fill="#fefae0"
         />
         <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-        {/* <div className="text-4xl sm:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8">
-          Backgrounds
-        </div> */}
         <div className="flex flex-col z-20">
           <div className="mx-auto blue_bg inline-block py-1 px-4 rounded-full">
             Welcome to the Smart Quizzer 🥳
@@ -24,7 +19,7 @@ export default function Home() {
             <span className="blue_gradient">Experience with AI</span>
           </h2>
           <div className="mx-auto mt-5 flex gap-5">
-            <HomeBtn/>
+            <HomeBtn />
           </div>
         </div>
       </div>
