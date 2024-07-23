@@ -6,7 +6,7 @@ import { LoginSchema } from "@/schemas";
 
 type LoginSchemaType = z.infer<typeof LoginSchema>;
 
-export const login = (values: LoginSchemaType) => {
+export const login = async (values: LoginSchemaType) => {
     const validatedFields = LoginSchema.safeParse(values);
 
     if (!validatedFields.success) {
