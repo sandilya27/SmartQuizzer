@@ -1,8 +1,12 @@
 "use server";
 
 import { z } from "zod";
+import { AuthError } from "next-auth";
 
+import { signIn } from '@/auth';
 import { LoginSchema } from "@/schemas";
+import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
+
 
 type LoginSchemaType = z.infer<typeof LoginSchema>;
 
@@ -13,5 +17,23 @@ export const login = async (values: LoginSchemaType) => {
         return { error: "Invalid fields!" };
     }
 
-    return {success : "Email sent"};
-}
+    const { email, password } = validatedFields.data;
+
+    try {
+        await signIn("credentials", {
+            email,
+            password,
+            redirectTo: DEFAULT_LOGIN_REDIRECT,
+        })
+    } catch (error) {
+        if (error instanceof AuthError) {
+            if (error.type == "CredentialsSignin") {
+                return { error: "Invalid credentials!" }
+            } else {
+                return { error: "Something went wrong" }
+            }
+        }
+
+        throw error;
+    }
+};
