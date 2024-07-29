@@ -3,6 +3,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 
 import { db } from "@/lib/db";
 import authConfig from "@/auth.config";
+import { getTwoFactorConfirmationByUserId } from "@/data/two-factor-confirmation";
 
 export type ExtendedUser = DefaultSession["user"] & {
     role: "STUDENT" | "TEACHER"
@@ -33,16 +34,26 @@ export const {
         }
     },
     callbacks: {
-        async signIn({ user,account }) {
+        async signIn({ user, account }) {
             //Allow OAuth without email verification
-            if(account?.provider !== "credentials") return true;
+            if (account?.provider !== "credentials") return true;
 
             const id = user.id;
             const exsistingUser = await db.user.findUnique({ where: { id } });
 
             //Prevent sign in without email verification
-            if(!exsistingUser || !exsistingUser.emailVerified){
+            if (!exsistingUser || !exsistingUser.emailVerified) {
                 return false;
+            }
+
+            if (exsistingUser.isTwoFactorEnabled) {
+                const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(exsistingUser.id);
+
+                if (!twoFactorConfirmation) return false;
+
+                await db.twoFactorConfirmation.delete({
+                    where: { id: twoFactorConfirmation.id }
+                })
             }
 
             return true;
