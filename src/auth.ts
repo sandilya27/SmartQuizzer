@@ -33,16 +33,20 @@ export const {
         }
     },
     callbacks: {
-        // async signIn({ user }) {
-        //     const id = user.id;
-        //     const exsistingUser = await db.user.findUnique({ where: { id } });
+        async signIn({ user,account }) {
+            //Allow OAuth without email verification
+            if(account?.provider !== "credentials") return true;
 
-        //     if(!exsistingUser || !exsistingUser.emailVerified){
-        //         return false;
-        //     }
+            const id = user.id;
+            const exsistingUser = await db.user.findUnique({ where: { id } });
 
-        //     return true;
-        // },
+            //Prevent sign in without email verification
+            if(!exsistingUser || !exsistingUser.emailVerified){
+                return false;
+            }
+
+            return true;
+        },
         async session({ token, session }) {
             if (token.sub && session.user) {
                 session.user.id = token.sub;
