@@ -26,7 +26,7 @@ export const login = async (values: LoginSchemaType) => {
 
     // code=JSON.stringify(code);
 
-    console.log({code});
+    console.log({ code });
     console.log(typeof code);
 
     const exsistingUser = await db.user.findUnique({
@@ -103,7 +103,7 @@ export const login = async (values: LoginSchemaType) => {
         await signIn("credentials", {
             email,
             password,
-            redirectTo: DEFAULT_LOGIN_REDIRECT,
+            redirectTo: exsistingUser?.role === "STUDENT" ? "/student/dashboard" : "/teacher/dashboard",
         })
     } catch (error) {
         if (error instanceof AuthError) {
